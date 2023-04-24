@@ -21,7 +21,7 @@ function App() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isReady, setIsReady] = useState(false);
-
+  //for user and artist router check
   const { userInfo } = useSelector((store) => store);
   const isUser = userInfo.role === 'user';
   const isArtist = userInfo.role === 'artist';

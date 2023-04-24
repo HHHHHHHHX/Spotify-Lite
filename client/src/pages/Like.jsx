@@ -129,6 +129,7 @@ function Like() {
               return (
                 <tr key={index}>
                   <td style={{ width: 40, color: '#fff' }}>
+                    {/* select multiple songs to unlike */}
                     <Checkbox
                       checked={Boolean(checkIndex[index])}
                       onChange={(e) =>

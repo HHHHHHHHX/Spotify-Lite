@@ -1,4 +1,3 @@
-// jsx-a11y/anchor-is-valid
 import { useEffect, useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';

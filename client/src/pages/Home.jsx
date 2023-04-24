@@ -28,7 +28,7 @@ function Home() {
       '',
       `/home?keyword=${keyword}&language=${language}&genre=${genre}&page=${_page}`
     );
-
+    
     setPage(_page);
     get(
       `/api/songs?keyword=${keyword}&language=${language}&genre=${genre}&page=${_page}`
