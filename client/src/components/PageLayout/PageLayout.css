@@ -1,0 +1,76 @@
+.page-root {
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+}
+.asider {
+  width: 241px;
+  min-height: 100vh;
+  background-color: #000;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 28px;
+}
+
+.asider-menu {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.asider-menu-item-icon {
+  margin-right: 4px;
+}
+
+.asider-menu-item {
+  height: 40px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(179, 179, 179);
+  width: 100%;
+  cursor: pointer;
+}
+
+.asider-menu-label {
+  width: 100px;
+  margin-left: 24px;
+}
+
+.asider-menu-item-active {
+  color: #fff;
+}
+
+.content {
+  flex: 1;
+  background-color: #121212;
+}
+
+.content-nav {
+  height: 64px;
+  width: 100%;
+  padding-right: 24px;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: #fff;
+}
+
+.content-nav-username {
+  font-size: 16px;
+  margin-right: 24px;
+}
+
+.content-main {
+  width: 100%;
+  min-width: 980px;
+  padding-left: 24px;
+  overflow-y: scroll;
+  padding-top: 24px;
+}

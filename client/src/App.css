@@ -1,0 +1,153 @@
+.App {
+  width: 100vw;
+  min-height: 100vh;
+  background: #fff;
+}
+
+.page {
+  padding-top: 24px;
+  width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.group {
+  margin-bottom: 12px;
+}
+
+.label {
+  font-size: 14px;
+  display: block;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.line {
+  margin: 12px 0px 20px;
+  flex: 1 1 0%;
+  border-top: 1px solid rgb(217, 218, 220);
+}
+
+input {
+  appearance: none;
+  background-image: none;
+  border: 0px;
+  display: block;
+  font-size: 1rem;
+  font-weight: 400;
+  inline-size: 100%;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  border: 2px solid rgb(133, 133, 133);
+  height: 48px;
+  outline: none;
+  padding: 2px 12px;
+}
+
+button {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+  background-color: #1ed760;
+  color: #000;
+
+  display: inline-flex;
+  border-radius: 500px;
+  font-size: inherit;
+  min-block-size: 48px;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  outline: none;
+  border: 1px solid #1ed760;
+  min-width: 120px;
+  cursor: pointer;
+}
+
+button.default {
+  border: 1px solid #878787;
+  color: #000;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+button.white {
+  height: 48px;
+  width: 96px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 1px solid #fff;
+  color: #000;
+  border-radius: 255px;
+}
+
+h2 {
+  height: 45px;
+  text-align: center;
+  color: #000;
+}
+
+h2.white {
+  color: #fff;
+}
+
+.error-msg {
+  color: #ff4d4f;
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.success-msg {
+  color: #1677ff;
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.text-link {
+  display: inline-block;
+  color: #000;
+  cursor: pointer;
+  text-decoration: underline;
+  margin: 0 4px;
+}
+
+tr {
+  border-bottom: 1px solid #fff;
+}
+th {
+  font-size: 18px;
+  width: 200px;
+  height: 60px;
+  text-align: center;
+  font-weight: bold;
+}
+
+td {
+  height: 60px;
+  width: 200px;
+  font-size: 17px;
+  text-align: center;
+}
+
+/* // for mui */
+
+.MuiTableContainer-root {
+  background: transparent !important;
+  color: #fff !important;
+}
+
+td,
+th {
+  color: #fff !important;
+}
+
+.MuiSvgIcon-root {
+  color: #fff !important;
+}
+
+.Mui-disabled {
+  color: rgb(179, 179, 179) !important;
+}

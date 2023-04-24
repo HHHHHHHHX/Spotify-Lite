@@ -1,0 +1,7 @@
+.empty {
+  width: 400px;
+  height: 100px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}

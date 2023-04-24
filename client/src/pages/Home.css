@@ -1,0 +1,31 @@
+.search {
+  display: flex;
+  flex-direction: row;
+  color: #fff;
+  height: 60px;
+  align-items: center;
+}
+.search .group {
+  width: 20%;
+  margin-left: 12px;
+}
+
+.results {
+  margin-top: 24px;
+  color: #fff;
+}
+
+.results .text-link {
+  color: #fff;
+  width: 70px;
+  padding: 4px 6px;
+  border: 1px solid #fff;
+  border-radius: 255px;
+  background: rgb(41, 41, 41);
+}
+
+.footer{
+  margin-top: 24px;
+  font-size: 15px;
+}
+
