@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import validator from 'validator';
 import {
   TextField,
   MenuItem,
@@ -9,10 +8,11 @@ import {
   FormControl,
   InputLabel,
 } from '@mui/material';
-import logo from '../assets/logo.png';
-import { ACTION_TYPE } from '../store';
-import { post } from '../utils/request';
+import logo from '../../assets/logo.png';
+import { ACTION_TYPE } from '../../store';
+import { post } from '../../utils/request';
 import './Login.css';
+import { validLoginOrSignup } from '../../utils';
 
 function Login() {
   const [errMsg, setErrMsg] = useState('');
@@ -41,16 +41,8 @@ function Login() {
   };
 
   const handleLogin = () => {
-    // vilidation
-    let errors = {};
-    if (!validator.isEmail(email)) {
-      errors.email = 'Incorrect email format';
-    }
-    if (!validator.isLength(password, { min: 3, max: 30 })) {
-      errors.password = 'The length of the password is between 3-30 characters';
-    }
-
-    if (Object.keys(errors).length > 0) {
+    const errors = validLoginOrSignup({ email, password }, false);
+    if (errors) {
       return setFormErrors(errors);
     }
     setFormErrors({});
@@ -66,18 +58,8 @@ function Login() {
   };
 
   const handleSignUp = () => {
-    // validation
-    let errors = {};
-    if (!validator.isLength(username, { min: 3, max: 30 })) {
-      errors.username = 'The length of the username is between 3-30 characters';
-    }
-    if (!validator.isEmail(email)) {
-      errors.email = 'Incorrect email format';
-    }
-    if (!validator.isLength(password, { min: 3, max: 30 })) {
-      errors.password = 'The length of the password is between 3-30 characters';
-    }
-    if (Object.keys(errors).length > 0) {
+    const errors = validLoginOrSignup({ email, password, username }, true);
+    if (errors) {
       return setFormErrors(errors);
     }
     setFormErrors({});
@@ -101,7 +83,7 @@ function Login() {
         <img src={logo} width={144} height={44} alt="logo" />
       </header>
       <div className="form">
-      {/* isSignUp is truthy */}
+        {/* isSignUp is truthy */}
         {isSignUp && (
           <div className="group">
             <TextField

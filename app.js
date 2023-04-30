@@ -6,7 +6,10 @@ const path = require('path');
 const cors = require('cors');
 const session = require('express-session');
 
-const routes = require('./routes/routes');
+const ArtistsRoute = require('./routes/Artists');
+const AuthRoute = require('./routes/auth');
+const SongRoute = require('./routes/Songs');
+const UserRoutes = require('./routes/Users');
 
 app.use(express.json());
 app.use(cookieParser());
@@ -22,7 +25,9 @@ app.use(
   })
 );
 
-
-app.use('/api', routes);
+app.use('/api', ArtistsRoute);
+app.use('/api', AuthRoute);
+app.use('/api', SongRoute);
+app.use('/api', UserRoutes);
 
 module.exports = app;

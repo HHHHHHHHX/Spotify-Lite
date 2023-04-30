@@ -7,11 +7,11 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
-import { del, get } from '../utils/request';
-import SongDialog from '../components/SongDialog';
-import PageLayout from '../components/PageLayout';
-import mySong from '../assets/my-songs.png';
-import myFollow from '../assets/my-followers.png';
+import { del, get } from '../../utils/request';
+import SongDialog from '../../components/SongDialog';
+import PageLayout from '../../components/PageLayout';
+import mySong from '../../assets/my-songs.png';
+import myFollow from '../../assets/my-followers.png';
 
 const menus = [
   { label: 'My Songs', icon: mySong, url: '/home-artist' },
@@ -22,9 +22,13 @@ function HomeArtist() {
   const [data, setData] = useState([]);
   const [open, setOpen] = useState(false);
   const [item, setItem] = useState({});
+  const [loading, setLoading] = useState(false);
+
 
   const getData = () => {
+    setLoading(true);
     get(`/api/artist/songs`).then((resp) => {
+      setLoading(false);
       if (resp.success) {
         setData(resp.data || []);
       }
@@ -62,7 +66,7 @@ function HomeArtist() {
   return (
     <PageLayout url="/home-artist" menus={menus}>
       <h2 className="white" style={{ textAlign: 'left' }}>
-        My Songs
+        My Songs{loading ? '(loading...)' : ''}
       </h2>
       <Button variant="outlined" onClick={handleAdd}>
         Add Song

@@ -1,41 +1,45 @@
 async function get(url = '') {
-  const response = await fetch(url, {
+  return await fetch(url, {
     method: 'GET',
-  });
-  return response.json();
+  })
+    .then((response) => response.json())
+    .catch((error) => window.alert(error.toString()));
 }
 
 async function post(url = '', data = {}) {
-  const response = await fetch(url, {
+  return await fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(data),
-  });
-  return response.json();
+  })
+    .then((response) => response.json())
+    .catch((error) => window.alert(error.toString()));
 }
 
 async function put(url = '', data = {}) {
-  const response = await fetch(url, {
+  return await fetch(url, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(data),
-  });
-  return response.json();
+  })
+    .then((response) => response.json())
+    .catch((error) => window.alert(error.toString()));
 }
 
 async function del(url = '', data = {}) {
-  const response = await fetch(url, {
+  return await fetch(url, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(data),
-  });
-  return response.json();
+  })
+    .then((response) => response.json())
+    .catch((error) => window.alert(error.toString()));
 }
 
 export { get, post, put, del };

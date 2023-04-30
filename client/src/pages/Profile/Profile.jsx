@@ -1,10 +1,10 @@
-import PageLayout from '../components/PageLayout';
+import PageLayout from '../../components/PageLayout';
 import { useEffect, useState } from 'react';
 import validator from 'validator';
-import { get, put } from '../utils/request';
+import { get, put } from '../../utils/request';
 import { useDispatch, useSelector } from 'react-redux';
 import { TextField } from '@mui/material';
-import { ACTION_TYPE } from '../store';
+import { ACTION_TYPE } from '../../store';
 import './Profile.css';
 
 function Profile() {

@@ -1,13 +1,23 @@
-// http://xxxx?test=a
-// getQueryVariable('test') = 'a'
-export function getQueryVariable(variable) {
-  var query = window.location.search.substring(1);
-  var vars = query.split('&');
-  for (var i = 0; i < vars.length; i++) {
-    var pair = vars[i].split('=');
-    if (pair[0] === variable) {
-      return pair[1];
+import validator from 'validator';
+
+export const validLoginOrSignup = (values = {}, isSignup = false) => {
+  let errors = {};
+  if (!validator.isEmail(values.email)) {
+    errors.email = 'Incorrect email format';
+  }
+  if (!validator.isLength(values.password, { min: 3, max: 30 })) {
+    errors.password = 'The length of the password is between 3-30 characters';
+  }
+
+  if (isSignup) {
+    if (!validator.isLength(values.username, { min: 3, max: 30 })) {
+      errors.username = 'The length of the username is between 3-30 characters';
     }
   }
-  return false;
-}
+
+  if (Object.keys(errors).length > 0) {
+    return errors;
+  }
+  // pass
+  return null;
+};

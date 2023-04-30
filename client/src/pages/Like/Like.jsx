@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, Checkbox } from '@mui/material';
-import PageLayout from '../components/PageLayout';
-import { get, put } from '../utils/request';
-import { ACTION_TYPE } from '../store';
+import PageLayout from '../../components/PageLayout';
+import { get, put } from '../../utils/request';
+import { ACTION_TYPE } from '../../store';
 
 import './Like.css';
 
@@ -15,6 +15,7 @@ function Like() {
   const [artists, setArtists] = useState([]);
 
   const [checkIndex, setCheckIndexs] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const refreshUserInfo = () => {
     get('/api/user').then((resp) => {
@@ -24,7 +25,7 @@ function Like() {
   };
 
   const getSongs = () => {
-    get('/api/user/songs').then((resp) => {
+    return get('/api/user/songs').then((resp) => {
       if (resp.success) {
         setCheckIndexs({});
         setSongs(resp.data);
@@ -34,7 +35,7 @@ function Like() {
   };
 
   const getArtists = () => {
-    get('/api/user/artists').then((resp) => {
+    return get('/api/user/artists').then((resp) => {
       if (resp.success) {
         setArtists(resp.data);
         refreshUserInfo();
@@ -43,8 +44,10 @@ function Like() {
   };
 
   const getData = () => {
-    getSongs();
-    getArtists();
+    setLoading(true);
+    Promise.all([getSongs(), getArtists()]).then((resp) => {
+      setLoading(false);
+    });
   };
 
   const handleUnLike = (item) => {
@@ -80,8 +83,8 @@ function Like() {
         unlikeIds.push(songs[key]._id);
       }
     });
-    
-    if(unlikeIds.length === 0){
+
+    if (unlikeIds.length === 0) {
       return;
     }
 
@@ -104,7 +107,7 @@ function Like() {
   return (
     <PageLayout url="/like" errMsg={errMsg}>
       <h2 className="white" style={{ textAlign: 'left' }}>
-        My Liked Singers
+        My Liked Singers{loading ? '(loading...)' : ''}
       </h2>
 
       <Button variant="outlined" onClick={handleUnlikeAll}>

@@ -6,10 +6,10 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { get } from '../utils/request';
-import PageLayout from '../components/PageLayout';
-import mySong from '../assets/my-songs.png';
-import myFollow from '../assets/my-followers.png';
+import { get } from '../../utils/request';
+import PageLayout from '../../components/PageLayout';
+import mySong from '../../assets/my-songs.png';
+import myFollow from '../../assets/my-followers.png';
 
 const menus = [
   { label: 'My Songs', icon: mySong, url: '/home-artist' },
@@ -18,8 +18,13 @@ const menus = [
 
 function HomeArtistFollow() {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+
   const getData = () => {
+    setLoading(true);
     get(`/api/artist/follows`).then((resp) => {
+      setLoading(false);
       if (resp.success) {
         setData(resp.data || []);
       }
@@ -34,7 +39,7 @@ function HomeArtistFollow() {
   return (
     <PageLayout url="/home-artist-follows" menus={menus}>
       <h2 className="white" style={{ textAlign: 'left' }}>
-        My Followers
+        My Followers{loading ? '(loading...)' : ''}
       </h2>
       <TableContainer component={Paper}>
         <Table style={{ width: 600 }}>

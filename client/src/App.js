@@ -5,26 +5,24 @@ import {
   useNavigate,
 } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Provider, useDispatch, useSelector } from 'react-redux';
+import { Provider, useDispatch } from 'react-redux';
 import store, { ACTION_TYPE } from './store';
-import Home from './pages/Home';
-import HomeArtist from './pages/Home-Artist';
-import HomeArtistFollows from './pages/Home-Artist-Follows';
-import Login from './pages/Login';
-import Profile from './pages/Profile';
-import Like from './pages/Like';
-import PageNotFound from './pages/PageNotFound';
+import Home from './pages/Home/Home';
+import HomeArtist from './pages/Home-Artist/Home-Artist';
+import HomeArtistFollows from './pages/Home-Artist-Follows/Home-Artist-Follows';
+import Login from './pages/Login/Login';
+import Profile from './pages/Profile/Profile';
+import Like from './pages/Like/Like';
+import PageNotFound from './pages/PageNotFound/PageNotFound';
 import { get } from './utils/request';
 import './App.css';
+import RequireAuth from './components/RequireAuth';
 
 function App() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isReady, setIsReady] = useState(false);
   //for user and artist router check
-  const { userInfo } = useSelector((store) => store);
-  const isUser = userInfo.role === 'user';
-  const isArtist = userInfo.role === 'artist';
 
   // check session state
   useEffect(() => {
@@ -47,20 +45,25 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" exact element={<Login />} />
-        {isArtist && (
+
+        {/* user routes */}
+        <Route element={<RequireAuth role="user" redirectUrl="/" />}>
+          <Route path="/home" exact element={<Home />} />
+          <Route path="/like" exact element={<Like />} />
+          <Route path="/profile" exact element={<Profile />} />
+        </Route>
+
+        {/* artist Routes */}
+        <Route element={<RequireAuth role="artist" redirectUrl="/" />}>
           <Route path="/home-artist" exact element={<HomeArtist />} />
-        )}
-        {isArtist && (
           <Route
             path="/home-artist-follows"
             exact
             element={<HomeArtistFollows />}
           />
-        )}
+        </Route>
 
-        {isUser && <Route path="/home" exact element={<Home />} />}
-        {isUser && <Route path="/like" exact element={<Like />} />}
-        {isUser && <Route path="/profile" exact element={<Profile />} />}
+        {/* 404 routes */}
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </div>
